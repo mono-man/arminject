@@ -42,7 +42,7 @@ try:
     print "@ Starting %s/%s ..." % ( process, activity )
 
     # we need to set selinux to permissive in order to make ptrace work
-    adb.set_selinux_level( 0 )
+    adb.set_selinux_level( "permissive" )
     adb.clear_log()
 
     pid = adb.start_activity( process, activity )

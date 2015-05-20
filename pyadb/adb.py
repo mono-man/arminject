@@ -34,7 +34,7 @@ class ADB:
             raise "ADB binary not found in PATH."
 
     def push( self, src, dst ):
-        self._exec( "adb push '%s' '%s' 2>&1 /dev/null" % ( src, dst ) )
+        self._exec( "adb push '%s' '%s' > /dev/null 2>&1" % ( src, dst ) )
 
     def sh( self, cmd ):
         return self._exec( "adb shell '%s'" % cmd )
@@ -49,7 +49,7 @@ class ADB:
         self._exec( "adb logcat -c" )
 
     def set_selinux_level( self, level ):
-        self.sh( "su 0 setenforce %d" % level )
+        self.sh( "su 0 setenforce %s" % level )
 
     def get_pid( self, proc ):
         return int( self.sudo( "pidof %s" % proc ).strip() )
